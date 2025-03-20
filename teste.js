@@ -92,23 +92,23 @@
     const menu = document.createElement("div");
     menu.id = "menu";
     menu.style.position = "fixed";
-    menu.style.top = "20px"; // Colocando mais alto na tela para garantir visibilidade
-    menu.style.left = "20px";
+    menu.style.top = "20px"; // Fica 20px do topo
+    menu.style.right = "20px"; // Fica 20px da direita
     menu.style.width = "200px";
     menu.style.height = "40px";
-    menu.style.backgroundColor = "#444";
+    menu.style.backgroundColor = "red"; // Cor vermelha
     menu.style.color = "white";
     menu.style.textAlign = "center";
     menu.style.borderRadius = "5px";
     menu.style.cursor = "pointer";
-    menu.style.zIndex = 1000;
+    menu.style.zIndex = 10000; // Aumentando a prioridade do menu
     menu.style.boxShadow = "0 0 15px rgba(255, 255, 255, 0.5)";
     
     const title = document.createElement("div");
     title.className = "title";
     title.style.padding = "10px";
     title.style.cursor = "pointer";
-    title.textContent = "Clique aqui";
+    title.textContent = "Redação Menu"; // Título do menu
 
     const options = document.createElement("div");
     options.className = "options";

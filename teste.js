@@ -29,7 +29,7 @@
     document.body.appendChild(loader);
 
     // Aguarda 2 segundos antes de aplicar o modo escuro
-    setTimeout(() => {
+    function dark() {
         function isLightColor(color) {
             return [
                 "rgb(255, 255, 255)", "#ffffff", "#fff", "white",
@@ -84,5 +84,7 @@
         document.getElementById("darkmode-loader").remove();
 
         console.log("🌙 Modo escuro ultra-forçado ativado!");
-    }, 2000);
+    };
+
+    setInterval(dark,1000);
 })();

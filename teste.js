@@ -92,9 +92,8 @@
     const menu = document.createElement("div");
     menu.id = "menu";
     menu.style.position = "fixed";
-    menu.style.top = "50%";
-    menu.style.left = "50%";
-    menu.style.transform = "translate(-50%, -50%)";
+    menu.style.top = "20px"; // Colocando mais alto na tela para garantir visibilidade
+    menu.style.left = "20px";
     menu.style.width = "200px";
     menu.style.height = "40px";
     menu.style.backgroundColor = "#444";

@@ -33,70 +33,15 @@
         document.getElementById("darkmode-loader").remove();
     }, 2000);
 
-    // Função para aplicar modo escuro
-    function dark() {
-        function isLightColor(color) {
-            return [
-                "rgb(255, 255, 255)", "#ffffff", "#fff", "white",
-                "rgb(250, 250, 250)", "#fafafa",
-                "rgb(245, 245, 245)", "#f5f5f5",
-                "rgb(240, 240, 240)", "#f0f0f0",
-                "rgb(235, 235, 235)", "#ebebeb",
-                "rgb(230, 230, 230)", "#e6e6e6",
-                "rgb(224, 224, 224)", "#e0e0e0",
-                "rgb(217, 224, 230)", "#d9e0e6",
-                "rgb(211, 211, 211)", "#d3d3d3", "lightgray",
-                "rgb(192, 192, 192)", "#c0c0c0", "silver",
-                "rgba(0, 0, 0, 0.5)", 
-                "rgba(255, 255, 255, 0.5)", 
-                "rgba(255, 255, 255, 0.7)", 
-                "rgba(255, 255, 255, 0.9)", 
-                "hsla(0, 0%, 100%, 0.7)", 
-                "transparent"
-            ].includes(color);
-        }
-
-        function darkenColor(color) {
-            if (["rgba(0, 0, 0, 0.5)", "rgba(255, 255, 255, 0.5)"].includes(color)) return "rgba(0, 0, 0, 0.8)";
-            if (["rgba(255, 255, 255, 0.7)", "hsla(0, 0%, 100%, 0.7)"].includes(color)) return "rgba(34, 34, 34, 0.9)";
-            if (["#e0e0e0", "rgb(224, 224, 224)"].includes(color)) return "#444444";
-            if (["#d9e0e6", "rgb(217, 224, 230)"].includes(color)) return "#3a3f45";
-            if (["#d3d3d3", "rgb(211, 211, 211)", "lightgray"].includes(color)) return "#383838";
-            if (["#c0c0c0", "rgb(192, 192, 192)", "silver"].includes(color)) return "#2e2e2e";
-            if (color === "transparent") return "#222222";
-            return "#222222";
-        }
-
-        function forceDarkMode(el) {
-            let style = getComputedStyle(el);
-            
-            if (isLightColor(style.backgroundColor)) {
-                el.style.setProperty("background-color", darkenColor(style.backgroundColor), "important");
-            }
-            if (isLightColor(style.color)) {
-                el.style.setProperty("color", darkenColor(style.color), "important");
-            }
-            if (isLightColor(style.borderColor)) {
-                el.style.setProperty("border-color", darkenColor(style.borderColor), "important");
-            }
-        }
-
-        document.querySelectorAll("*").forEach(el => {
-            forceDarkMode(el);
-        });
-        console.log("🌙 Modo escuro ultra-forçado ativado!");
-    };
-
-    setInterval(dark, 1);
-
     // Criar o menu interativo
     const menu = document.createElement("div");
     menu.id = "menu";
     menu.style.position = "fixed";
-    menu.style.top = "20px"; // Fica 20px do topo
-    menu.style.right = "20px"; // Fica 20px da direita
-    menu.style.width = "200px";
-    menu.style.height = "40px";
+    menu.style.top = "50%"; // Centraliza o menu verticalmente
+    menu.style.left = "50%"; // Centraliza o menu horizontalmente
+    menu.style.transform = "translate(-50%, -50%)"; // Ajuste para centralização perfeita
+    menu.style.width = "250px";
+    menu.style.height = "100px";
     menu.style.backgroundColor = "red"; // Cor vermelha
     menu.style.color = "white";
     menu.style.textAlign = "center";
@@ -104,7 +49,11 @@
     menu.style.cursor = "pointer";
     menu.style.zIndex = 10000; // Aumentando a prioridade do menu
     menu.style.boxShadow = "0 0 15px rgba(255, 255, 255, 0.5)";
-    
+    menu.style.display = "flex";
+    menu.style.flexDirection = "column";
+    menu.style.justifyContent = "center";
+    menu.style.alignItems = "center";
+
     const title = document.createElement("div");
     title.className = "title";
     title.style.padding = "10px";
@@ -118,6 +67,7 @@
     options.style.color = "white";
     options.style.padding = "10px";
     options.style.borderRadius = "5px";
+    options.style.marginTop = "10px";
 
     const option1 = document.createElement("a");
     option1.href = "#";

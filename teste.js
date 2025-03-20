@@ -28,11 +28,12 @@
     `;
     document.body.appendChild(loader);
 
-    // Aguarda 2 segundos antes de aplicar o modo escuro
+    // Remover o carregamento após 2 segundos
     setTimeout(() => {
         document.getElementById("darkmode-loader").remove();
     }, 2000);
 
+    // Função para aplicar modo escuro
     function dark() {
         function isLightColor(color) {
             return [

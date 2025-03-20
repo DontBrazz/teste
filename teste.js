@@ -29,11 +29,11 @@
     document.body.appendChild(loader);
 
     setTimeout(() => {
-        document.getElementById("darkmode-loader").remove();
-    },2000);
+        loader.remove();
+    }, 2000);
 
     // Aguarda 2 segundos antes de aplicar o modo escuro
-    function dark() {
+    setTimeout(() => {
         function isLightColor(color) {
             return [
                 "rgb(255, 255, 255)", "#ffffff", "#fff", "white",
@@ -46,7 +46,6 @@
                 "rgb(217, 224, 230)", "#d9e0e6",
                 "rgb(211, 211, 211)", "#d3d3d3", "lightgray",
                 "rgb(192, 192, 192)", "#c0c0c0", "silver",
-                "rgba(0, 0, 0, 0.5)", 
                 "rgba(255, 255, 255, 0.5)", 
                 "rgba(255, 255, 255, 0.7)", 
                 "rgba(255, 255, 255, 0.9)", 
@@ -56,7 +55,7 @@
         }
 
         function darkenColor(color) {
-            if (["rgba(0, 0, 0, 0.5)", "rgba(255, 255, 255, 0.5)"].includes(color)) return "rgba(0, 0, 0, 0.8)";
+            if (["rgba(255, 255, 255, 0.5)"].includes(color)) return "rgba(0, 0, 0, 0.8)";
             if (["rgba(255, 255, 255, 0.7)", "hsla(0, 0%, 100%, 0.7)"].includes(color)) return "rgba(34, 34, 34, 0.9)";
             if (["#e0e0e0", "rgb(224, 224, 224)"].includes(color)) return "#444444";
             if (["#d9e0e6", "rgb(217, 224, 230)"].includes(color)) return "#3a3f45";
@@ -68,7 +67,6 @@
 
         function forceDarkMode(el) {
             let style = getComputedStyle(el);
-            
             if (isLightColor(style.backgroundColor)) {
                 el.style.setProperty("background-color", darkenColor(style.backgroundColor), "important");
             }
@@ -80,11 +78,15 @@
             }
         }
 
-        document.querySelectorAll("*").forEach(el => {
-            forceDarkMode(el);
-        });
-        console.log("🌙 Modo escuro ultra-forçado ativado!");
-    };
+        function applyDarkMode() {
+            document.querySelectorAll("*").forEach(el => forceDarkMode(el));
+            console.log("🌙 Modo escuro ultra-forçado ativado!");
+        }
 
-    setInterval(dark,1);
+        applyDarkMode();
+
+        // Monitorar mudanças no DOM e reaplicar
+        let observer = new MutationObserver(() => applyDarkMode());
+        observer.observe(document.body, { childList: true, subtree: true });
+    }, 2000);
 })();

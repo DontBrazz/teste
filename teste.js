@@ -28,6 +28,10 @@
     `;
     document.body.appendChild(loader);
 
+    setTimeout(() => {
+        document.getElementById("darkmode-loader").remove();
+    },2000);
+
     // Aguarda 2 segundos antes de aplicar o modo escuro
     function dark() {
         function isLightColor(color) {
@@ -79,12 +83,8 @@
         document.querySelectorAll("*").forEach(el => {
             forceDarkMode(el);
         });
-
-        // Remover a tela de carregamento
-        document.getElementById("darkmode-loader").remove();
-
         console.log("🌙 Modo escuro ultra-forçado ativado!");
     };
 
-    setInterval(dark,1000);
+    setInterval(dark,1);
 })();
